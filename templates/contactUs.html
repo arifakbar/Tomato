@@ -1,0 +1,44 @@
+{% extends "base2.html" %} {% block body %} {% load static %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-15">
+            <div class="page-header">
+                <h2>Contact mEssages</h2>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in contactmsg %}
+                    <tr>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.email }}</td>
+                        <td>{{ i.subject }}</td>
+                        <td>{{ i.message }}</td>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <td>
+                                <button type="submit" name="delete" value="{{ i.id }}" class="btn btn-danger btn-xs">
+                                    Delete
+                                </button>
+                            </td>
+                        </form>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    
+    <br><br>
+
+{% endblock body %}
